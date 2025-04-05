@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnbht6833uvx7"]
+
+[ext_resource type="Script" uid="uid://bl08le06i7odc" path="res://scn/entity/peon/pv_wall.gd" id="1_dmxnn"]
+[ext_resource type="Script" uid="uid://df3ocxt6pew5l" path="res://scn/entity/peon/ui_wall.gd" id="2_ai5qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lc2"]
+
+[node name="PvWall" type="StaticBody2D"]
+script = ExtResource("1_dmxnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y7lc2")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -15.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 30.0
+scale = Vector2(0.284258, 0.284258)
+script = ExtResource("2_ai5qg")
+
+[node name="feedback" type="HSlider" parent="UI"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 16.0
+step = 0.1
+editable = false
+scrollable = false
+
+[node name="PV" type="HSlider" parent="UI"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 16.0
+step = 0.1
+editable = false
+scrollable = false
+
+[node name="NodeLabel" type="Node2D" parent="UI"]
+position = Vector2(56.287, -10.5538)
+
+[node name="Label" type="RichTextLabel" parent="UI/NodeLabel"]
+offset_left = -28.1435
+offset_top = -21.1076
+offset_right = 24.8565
+offset_bottom = 20.8924
+pivot_offset = Vector2(28.1435, 21.1076)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0/5"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

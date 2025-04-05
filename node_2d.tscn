@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://ck00wdgypq4dh"]
+
+[sub_resource type="Shader" id="Shader_0e48y"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise : repeat_enable;
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	COLOR.rgb = pow(texture(noise,UV).rgb,vec3(2)) * COLOR.rgb;
+	COLOR.a = COLOR.r;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wtcfe"]
+noise_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0e48y"]
+invert = true
+noise = SubResource("FastNoiseLite_wtcfe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_epypp"]
+shader = SubResource("Shader_0e48y")
+shader_parameter/noise = SubResource("NoiseTexture2D_0e48y")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y32ns"]
+load_path = "res://.godot/imported/mask.png-9415f3c8ef408e09c6c2de7e1e2b3df1.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtcfe"]
+
+[sub_resource type="Curve" id="Curve_wtcfe"]
+bake_resolution = 5
+_data = [Vector2(0, 0.5), 0.0, 7.76923, 0, 1, Vector2(0.0643564, 1), 0.0, 0.0, 0, 0, Vector2(0.123762, 0.988764), 0.0, 0.0, 0, 0, Vector2(0.158416, 0.876405), 0.0, 0.0, 0, 0, Vector2(0.232673, 0.932584), 0.0, 0.0, 0, 0, Vector2(0.242574, 0.404494), 0.0, 0.0, 0, 0, Vector2(0.316832, 0.370787), 0.0, 0.0, 0, 0, Vector2(0.391089, 0.94382), 0.0, 0.0, 0, 0, Vector2(0.40099, 0.404494), 0.0, 0.0, 0, 0, Vector2(0.450495, 0.0898877), 0.0, 0.0, 0, 0, Vector2(0.450505, 0.921348), 0.0, 0.0, 0, 0, Vector2(0.554455, 0.910112), 0.0, 0.0, 0, 0, Vector2(0.663366, 0.370787), 0.0, 0.0, 0, 0, Vector2(0.777228, 0.932584), 0.0, 0.0, 0, 0, Vector2(0.891089, 0.483146), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.154749, 0.0, 1, 0]
+point_count = 16
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_epypp")
+position = Vector2(304, 164)
+scale = Vector2(4.71875, 3.9375)
+texture = SubResource("CompressedTexture2D_y32ns")
+
+[node name="Line2D" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_wtcfe")
+points = PackedVector2Array(287, 465, 513, 407, 571, 383, 589, 425, 625, 416, 650, 333, 703, 363, 760, 348, 715, 256, 735, 221, 763, 207, 864, 209, 971, 139, 1116, 153)
+width_curve = SubResource("Curve_wtcfe")
+default_color = Color(0, 0, 0, 1)

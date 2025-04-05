@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dadaqqm6dcg5l"]
+
+[ext_resource type="Script" uid="uid://b6uf3817sivab" path="res://scn/entity/Stamina/stamina_base.gd" id="1_ge6fa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkraf"]
+size = Vector2(22, 22)
+
+[node name="StaminaBloc" type="StaticBody2D"]
+script = ExtResource("1_ge6fa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2bnfr")
+debug_color = Color(0.521157, 0.778052, 1, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_mkraf")
+debug_color = Color(0.783777, 0.434226, 3.85046e-07, 0.42)

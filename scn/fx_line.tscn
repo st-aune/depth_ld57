@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ehxcnpbnabln"]
+
+[node name="FxLine" type="Line2D"]
+points = PackedVector2Array(16, 55, 1, -1)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+position = Vector2(6, 2)
+points = PackedVector2Array(17, 43, -1, -6)
+default_color = Color(0.881583, 0.775178, 0.24087, 1)

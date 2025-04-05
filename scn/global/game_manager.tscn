@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://eavmc1s11r1l"]
+
+[ext_resource type="Script" uid="uid://dpwovi43em1mg" path="res://scn/global/event_game.gd" id="1_cbll4"]
+[ext_resource type="Script" uid="uid://bxal3rostcyum" path="res://scn/global/fx_handler.gd" id="2_gsugb"]
+
+[node name="EventGame" type="Node2D"]
+script = ExtResource("1_cbll4")
+
+[node name="FX_handler" type="Node2D" parent="."]
+script = ExtResource("2_gsugb")
