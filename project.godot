@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scn/global/game_manager.tscn"
 
+[display]
+
+window/size/viewport_width=920
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 player=""
@@ -71,4 +77,4 @@ action={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(1, 1, 1, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

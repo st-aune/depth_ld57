@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4eq7nxnnwdrf"]
+[gd_scene load_steps=5 format=3 uid="uid://d4eq7nxnnwdrf"]
 
 [ext_resource type="Script" uid="uid://bkvty5vqk0pan" path="res://scn/entity/peon/damage_bloc.gd" id="1_mkraf"]
+[ext_resource type="Script" uid="uid://cilceui1grhls" path="res://scn/entity/peon/render.gd" id="2_dsvlp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfr"]
 
@@ -12,10 +13,25 @@ script = ExtResource("1_mkraf")
 destroy_on_hit = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_2bnfr")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mkraf")
 debug_color = Color(0.783777, 0.434226, 3.85046e-07, 0.42)
+
+[node name="Render" type="Node2D" parent="."]
+script = ExtResource("2_dsvlp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Render"]
+color = Color(0.930086, 0.583289, 0.212705, 1)
+polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Render/Polygon2D"]
+z_index = -1
+position = Vector2(1, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)

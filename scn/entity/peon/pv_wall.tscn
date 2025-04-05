@@ -12,6 +12,7 @@ script = ExtResource("1_dmxnn")
 shape = SubResource("RectangleShape2D_y7lc2")
 
 [node name="UI" type="Control" parent="."]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_left = -15.0
@@ -51,3 +52,15 @@ text = "0/5"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Render" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Render"]
+color = Color(0.642694, 0.577909, 0.599026, 1)
+polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Render/Polygon2D"]
+z_index = -1
+position = Vector2(1, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
