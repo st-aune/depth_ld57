@@ -22,6 +22,6 @@ func on_dammaged(amount):
 	print("as wall I received dammage")
 	pv -= amount
 	wall_damaged.emit(pv)
-	if pv < 0:
+	if pv <= 0:
 		wall_died.emit()
 		queue_free()

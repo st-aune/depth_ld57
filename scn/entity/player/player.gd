@@ -30,7 +30,6 @@ var state = EState.STOPPED :
 
 func _ready() -> void:
 	stop()
-	bounce.connect(on_boing)
 	move.connect(GameManager.player_move.emit)
 
 func go(impulse_dir : Vector2,impulse_force : float  = -1 ):
@@ -47,10 +46,14 @@ func go(impulse_dir : Vector2,impulse_force : float  = -1 ):
 func _process(delta: float) -> void:
 	$Label.text = str(state)
 
+
 func _physics_process(delta: float) -> void:
 	if _colliding_bd < get_contact_count():
 		on_boing(get_colliding_bodies())
+		bounce.emit()
 	_colliding_bd = get_contact_count()
+	if state == EState.MOVING:
+		%pivot.look_at(linear_velocity)
 
 func on_boing(bodies):
 	print(bodies)

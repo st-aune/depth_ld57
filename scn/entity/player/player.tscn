@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://sw1fxa0c7anq"]
+[gd_scene load_steps=6 format=3 uid="uid://sw1fxa0c7anq"]
 
 [ext_resource type="Script" uid="uid://ck6rlgoktdn3u" path="res://scn/entity/player/player.gd" id="1_lnlao"]
 [ext_resource type="Script" uid="uid://q1hbm4k41l5" path="res://scn/entity/player/input_handler.gd" id="2_4y4yc"]
+[ext_resource type="Script" uid="uid://dlgwyotdk6iks" path="res://scn/entity/player/render.gd" id="2_dk3f3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4y4yc"]
 friction = 0.0
@@ -29,6 +30,7 @@ rotation = -1.57079
 target_position = Vector2(1.00147, 661)
 
 [node name="Render" type="Node2D" parent="pivot"]
+script = ExtResource("2_dk3f3")
 
 [node name="Polygon2D" type="Polygon2D" parent="pivot/Render"]
 color = Color(0.444737, 0.773776, 0.641889, 1)

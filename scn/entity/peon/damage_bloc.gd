@@ -3,6 +3,7 @@ class_name dammage_bloc
 
 signal doing_dammage(int)
 signal activity(bool)
+signal bounce
 @export var dammage_per_hit := 1
 @export var destroy_on_hit := true
 
@@ -21,7 +22,7 @@ func _on_player_collide(body: Node2D):
 		return
 	GameManager.player_do_dammage.emit(dammage_per_hit)
 	doing_dammage.emit(dammage_per_hit)
-	
+	bounce.emit()
 	if destroy_on_hit:
 		await get_tree().create_timer(0.1).timeout
 		$Area2D.monitoring = false

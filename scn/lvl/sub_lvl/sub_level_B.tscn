@@ -298,11 +298,11 @@ position = Vector2(-217, 453)
 scale = Vector2(3.5337, -3.3593)
 
 [node name="StaminaBloc6" parent="miniLevel3" instance=ExtResource("4_pku2s")]
-position = Vector2(748, 314)
+position = Vector2(584, 470)
 scale = Vector2(3.5337, -3.3593)
 
 [node name="DamageBloc3" parent="miniLevel3" instance=ExtResource("2_beuip")]
-position = Vector2(575, 457)
+position = Vector2(756, 318)
 scale = Vector2(3.43768, 2.72673)
 destroy_on_hit = true
 
@@ -380,9 +380,9 @@ position = Vector2(-172, 476)
 scale = Vector2(1.72294, 1.96253)
 
 [node name="StaminaBloc" parent="miniLevel4" instance=ExtResource("3_06asp")]
-position = Vector2(576, 532)
+position = Vector2(580, 551)
 rotation = 3.14159
-scale = Vector2(12.2641, -3.12754)
+scale = Vector2(29.18, -2.37778)
 
 [node name="StaminaBloc3" parent="miniLevel4" instance=ExtResource("4_pku2s")]
 position = Vector2(402, 174)
@@ -397,11 +397,6 @@ destroy_on_hit = false
 [node name="StaminaBloc5" parent="miniLevel4" instance=ExtResource("4_pku2s")]
 position = Vector2(-217, 453)
 scale = Vector2(3.5337, -3.3593)
-
-[node name="StaminaBloc6" parent="miniLevel4" instance=ExtResource("4_pku2s")]
-position = Vector2(406, 530)
-scale = Vector2(3.5337, -3.3593)
-destroy_on_hit = false
 
 [node name="DamageBloc3" parent="miniLevel4" instance=ExtResource("2_beuip")]
 position = Vector2(328, 324)

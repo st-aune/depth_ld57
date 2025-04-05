@@ -46,6 +46,7 @@ position = Vector2(-515, -330)
 [node name="drawer" parent="." instance=ExtResource("2_ttd7b")]
 visible = false
 points = PackedVector2Array(-229, 230)
+width = 2.0
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("3_tqcc2")
 

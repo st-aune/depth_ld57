@@ -17,8 +17,13 @@ signal focus_on(Vector2)
 var player_max_stamina := 10
 var player_stamina := 10 : 
 	set(value):
+		if value < player_stamina:
+			player_stamina_loose.emit()
+		if value > player_stamina:
+			player_stamina_gain.emit()
 		player_stamina = max(-1,min(value,player_max_stamina))
 		stamina_update.emit()
+		
 		
 var player_dammage_done = 0
 var dammage_done_during_shoot = 0
