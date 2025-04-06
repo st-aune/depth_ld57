@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dadaqqm6dcg5l"]
+[gd_scene load_steps=6 format=3 uid="uid://dadaqqm6dcg5l"]
 
 [ext_resource type="Script" uid="uid://b6uf3817sivab" path="res://scn/entity/Stamina/stamina_base.gd" id="1_ge6fa"]
 [ext_resource type="Script" uid="uid://djn3p38b2cf65" path="res://scn/entity/Stamina/render.gd" id="2_yi0hy"]
+[ext_resource type="Texture2D" uid="uid://dmbaoxnjm63g0" path="res://scn/entity/Stamina/stam (1).png" id="3_he0j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfr"]
 
@@ -25,12 +26,7 @@ debug_color = Color(0.783777, 0.434226, 3.85046e-07, 0.42)
 [node name="Render" type="Node2D" parent="."]
 script = ExtResource("2_yi0hy")
 
-[node name="Polygon2D" type="Polygon2D" parent="Render"]
-color = Color(0.259696, 0.776103, 0.930482, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
-
-[node name="Polygon2D2" type="Polygon2D" parent="Render/Polygon2D"]
-z_index = -1
-position = Vector2(1, 1)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+[node name="Stam(1)" type="Sprite2D" parent="Render"]
+position = Vector2(8.04663e-07, -0.500001)
+scale = Vector2(0.285714, 0.3)
+texture = ExtResource("3_he0j4")

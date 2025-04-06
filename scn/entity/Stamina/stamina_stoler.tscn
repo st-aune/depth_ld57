@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0p6xtogvo5ek"]
+[gd_scene load_steps=3 format=3 uid="uid://d0p6xtogvo5ek"]
 
 [ext_resource type="PackedScene" uid="uid://dadaqqm6dcg5l" path="res://scn/entity/Stamina/StaminaBase.tscn" id="1_4cn74"]
+[ext_resource type="Texture2D" uid="uid://bxof3tx1tlm23" path="res://scn/entity/Stamina/bad (4).png" id="2_l65v7"]
 
 [node name="StaminaBloc" instance=ExtResource("1_4cn74")]
 stamina_per_hit = -1
@@ -8,5 +9,7 @@ stamina_per_hit = -1
 [node name="CollisionShape2D" parent="." index="0"]
 debug_color = Color(0.806083, 0.0169909, 0.38456, 0.42)
 
-[node name="Polygon2D" parent="Render" index="0"]
-color = Color(0.842296, 0.0249897, 0.254371, 1)
+[node name="Stam(1)" parent="Render" index="0"]
+position = Vector2(-0.0714285, -1)
+scale = Vector2(0.309524, 0.3)
+texture = ExtResource("2_l65v7")

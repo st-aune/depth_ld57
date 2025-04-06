@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		bounce.emit()
 	_colliding_bd = get_contact_count()
 	if state == EState.MOVING:
-		%pivot.look_at(linear_velocity)
+		%pivot.look_at(position +  linear_velocity)
 
 func on_boing(bodies):
 	print(bodies)

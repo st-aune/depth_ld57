@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://3mdwyjos8mdw"]
+[gd_scene load_steps=13 format=3 uid="uid://3mdwyjos8mdw"]
 
 [ext_resource type="PackedScene" uid="uid://sw1fxa0c7anq" path="res://scn/entity/player/player.tscn" id="1_flxa2"]
 [ext_resource type="PackedScene" uid="uid://bdsphltalbagp" path="res://scn/entity/player/drawer.tscn" id="2_ttd7b"]
 [ext_resource type="Script" uid="uid://vxurq3kw5iee" path="res://scn/entity/player/drawer.gd" id="3_tqcc2"]
 [ext_resource type="Script" uid="uid://g003ms2itmdg" path="res://scn/lvl/camera_2d.gd" id="6_4p4ot"]
 [ext_resource type="Script" uid="uid://bngys0u5xro0p" path="res://scn/lvl/cameraman.gd" id="6_6dnf4"]
+[ext_resource type="Theme" uid="uid://c0btyxvbmu35h" path="res://scn/UI/Base.tres" id="6_7x5xa"]
 [ext_resource type="PackedScene" uid="uid://bfaodrgvfddok" path="res://scn/lvl/sub_lvl/sub_level_B.tscn" id="7_6dnf4"]
 [ext_resource type="Script" uid="uid://bt77pvawp0j2m" path="res://scn/lvl/stamina_ui.gd" id="8_7x5xa"]
 
@@ -68,6 +69,7 @@ offset_left = -476.0
 offset_top = 130.0
 offset_right = 504.0
 offset_bottom = 308.0
+theme = ExtResource("6_7x5xa")
 
 [node name="StaminaUI" type="Control" parent="Cameraman/Control"]
 anchors_preset = 0
@@ -109,8 +111,7 @@ offset_top = -42.0
 offset_right = 97.0
 offset_bottom = 39.0
 pivot_offset = Vector2(97, 40)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 50
+theme = ExtResource("6_7x5xa")
 text = "50/50"
 scroll_active = false
 horizontal_alignment = 1

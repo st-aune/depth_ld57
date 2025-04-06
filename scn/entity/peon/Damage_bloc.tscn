@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4eq7nxnnwdrf"]
+[gd_scene load_steps=6 format=3 uid="uid://d4eq7nxnnwdrf"]
 
 [ext_resource type="Script" uid="uid://bkvty5vqk0pan" path="res://scn/entity/peon/damage_bloc.gd" id="1_mkraf"]
 [ext_resource type="Script" uid="uid://cilceui1grhls" path="res://scn/entity/peon/render.gd" id="2_dsvlp"]
+[ext_resource type="Texture2D" uid="uid://gm46waj05lcv" path="res://scn/entity/peon/dam.png" id="3_wo7u3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bnfr"]
 
@@ -26,12 +27,7 @@ debug_color = Color(0.783777, 0.434226, 3.85046e-07, 0.42)
 [node name="Render" type="Node2D" parent="."]
 script = ExtResource("2_dsvlp")
 
-[node name="Polygon2D" type="Polygon2D" parent="Render"]
-color = Color(0.930086, 0.583289, 0.212705, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
-
-[node name="Polygon2D2" type="Polygon2D" parent="Render/Polygon2D"]
-z_index = -1
-position = Vector2(1, 1)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+[node name="Dam" type="Sprite2D" parent="Render"]
+position = Vector2(9.53674e-07, 0)
+scale = Vector2(0.298766, 0.298766)
+texture = ExtResource("3_wo7u3")

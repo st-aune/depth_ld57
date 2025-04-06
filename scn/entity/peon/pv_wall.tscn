@@ -1,9 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnbht6833uvx7"]
+[gd_scene load_steps=9 format=3 uid="uid://bnbht6833uvx7"]
 
 [ext_resource type="Script" uid="uid://bl08le06i7odc" path="res://scn/entity/peon/pv_wall.gd" id="1_dmxnn"]
 [ext_resource type="Script" uid="uid://df3ocxt6pew5l" path="res://scn/entity/peon/ui_wall.gd" id="2_ai5qg"]
+[ext_resource type="Texture2D" uid="uid://bk67im7y5gjag" path="res://scn/entity/peon/Illustration_sans_titre_26.png" id="3_1xg52"]
+[ext_resource type="Texture2D" uid="uid://c3uodeaaoh1i2" path="res://scn/entity/peon/oeil_bc (5).png" id="4_sobub"]
+[ext_resource type="Texture2D" uid="uid://8qhsil2s6rsr" path="res://scn/entity/peon/oeil_bc (3).png" id="5_gm1yx"]
+[ext_resource type="Texture2D" uid="uid://d0kws5d8kgjow" path="res://scn/entity/peon/oeil_bc (4).png" id="6_ikvl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lc2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_upy3e"]
+animations = [{
+"frames": [{
+"duration": 7.0,
+"texture": ExtResource("4_sobub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gm1yx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sobub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gm1yx")
+}, {
+"duration": 15.0,
+"texture": ExtResource("4_sobub")
+}, {
+"duration": 2.0,
+"texture": ExtResource("6_ikvl8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="PvWall" type="StaticBody2D"]
 script = ExtResource("1_dmxnn")
@@ -55,12 +85,20 @@ vertical_alignment = 1
 
 [node name="Render" type="Node2D" parent="."]
 
-[node name="Polygon2D" type="Polygon2D" parent="Render"]
-color = Color(0.642694, 0.577909, 0.599026, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+[node name="blc" type="Sprite2D" parent="Render"]
+position = Vector2(4.76837e-07, 0.500001)
+scale = Vector2(0.0865801, 0.291667)
+texture = ExtResource("3_1xg52")
 
-[node name="Polygon2D2" type="Polygon2D" parent="Render/Polygon2D"]
-z_index = -1
-position = Vector2(1, 1)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-10, -10, -10, 10, 10, 10, 10, -10)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Render"]
+position = Vector2(-6, -9.53674e-07)
+scale = Vector2(0.159677, 0.362602)
+sprite_frames = SubResource("SpriteFrames_upy3e")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Render"]
+position = Vector2(6, 0)
+scale = Vector2(0.159677, 0.362602)
+sprite_frames = SubResource("SpriteFrames_upy3e")
+autoplay = "default"
+frame_progress = 0.784836

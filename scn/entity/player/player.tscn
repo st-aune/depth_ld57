@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://sw1fxa0c7anq"]
+[gd_scene load_steps=10 format=3 uid="uid://sw1fxa0c7anq"]
 
 [ext_resource type="Script" uid="uid://ck6rlgoktdn3u" path="res://scn/entity/player/player.gd" id="1_lnlao"]
 [ext_resource type="Script" uid="uid://q1hbm4k41l5" path="res://scn/entity/player/input_handler.gd" id="2_4y4yc"]
 [ext_resource type="Script" uid="uid://dlgwyotdk6iks" path="res://scn/entity/player/render.gd" id="2_dk3f3"]
+[ext_resource type="Texture2D" uid="uid://ytmtmtqvl1st" path="res://scn/entity/player/player.png" id="3_024bh"]
+[ext_resource type="Texture2D" uid="uid://ddonbr2fuphkd" path="res://scn/entity/player/yeuxferme.png" id="4_pfobr"]
+[ext_resource type="Texture2D" uid="uid://t7mxtj46kdh4" path="res://scn/entity/player/yeuxouvert.png" id="5_q48ob"]
+[ext_resource type="Texture2D" uid="uid://2meuyf1jnhcy" path="res://scn/entity/player/pleur.png" id="6_pfobr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4y4yc"]
 friction = 0.0
 bounce = 0.99
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4y4yc"]
+radius = 14.0
 
 [node name="Player" type="RigidBody2D" groups=["player"]]
 physics_material_override = SubResource("PhysicsMaterial_4y4yc")
@@ -32,31 +37,31 @@ target_position = Vector2(1.00147, 661)
 [node name="Render" type="Node2D" parent="pivot"]
 script = ExtResource("2_dk3f3")
 
-[node name="Polygon2D" type="Polygon2D" parent="pivot/Render"]
-color = Color(0.444737, 0.773776, 0.641889, 1)
-polygon = PackedVector2Array(5, -9, 7, -7, 9, -4, 10, -1, 9, 4, 7, 8, 1, 10, -3, 10, -8, 7, -10, 3, -10, -1, -9, -6, -5, -9, -1, -10, 2, -10)
+[node name="Player" type="Sprite2D" parent="pivot/Render"]
+position = Vector2(-6.91433, -0.462195)
+rotation = 1.57079
+scale = Vector2(0.206722, 0.206722)
+texture = ExtResource("3_024bh")
 
-[node name="Polygon2D2" type="Polygon2D" parent="pivot/Render/Polygon2D"]
-show_behind_parent = true
-position = Vector2(1, 1)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(5, -9, 7, -7, 9, -4, 10, -1, 9, 4, 7, 8, 1, 10, -3, 10, -8, 7, -10, 3, -10, -1, -9, -6, -5, -9, -1, -10, 2, -10)
+[node name="Yeuxferme" type="Sprite2D" parent="pivot/Render"]
+visible = false
+position = Vector2(-2, 1)
+rotation = 1.57079
+scale = Vector2(0.0857123, 0.0857123)
+texture = ExtResource("4_pfobr")
 
-[node name="Polygon2D" type="Polygon2D" parent="pivot/Render/Polygon2D"]
-polygon = PackedVector2Array(0, -9, 5, -4, 7, 0, 5, 4, 0, 8, -2, 6, -3, 0, -2, -7)
+[node name="Yeuxouvert" type="Sprite2D" parent="pivot/Render"]
+visible = false
+position = Vector2(-3, 0)
+rotation = 1.57079
+scale = Vector2(0.0968992, 0.0968992)
+texture = ExtResource("5_q48ob")
 
-[node name="Polygon2D3" type="Polygon2D" parent="pivot/Render/Polygon2D"]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-4, -8, -5, -4, -6, -4, -5, -8)
-
-[node name="Polygon2D5" type="Polygon2D" parent="pivot/Render/Polygon2D"]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-3, 0, 0, -3, 7, 0, 0, 2)
-
-[node name="Polygon2D4" type="Polygon2D" parent="pivot/Render/Polygon2D"]
-scale = Vector2(1, -1.04)
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-4, -8, -5, -4, -6, -4, -5, -8)
+[node name="Pleur" type="Sprite2D" parent="pivot/Render"]
+position = Vector2(-4.61279, -0.380816)
+rotation = 1.56285
+scale = Vector2(0.113059, 0.113059)
+texture = ExtResource("6_pfobr")
 
 [node name="inputHandler" type="Node2D" parent="."]
 script = ExtResource("2_4y4yc")

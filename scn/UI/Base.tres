@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c0btyxvbmu35h"]
+
+[ext_resource type="FontFile" uid="uid://bciahmwei0xax" path="res://scn/UI/Dimbo Regular.ttf" id="1_haqiu"]
+
+[resource]
+default_font = ExtResource("1_haqiu")
+default_font_size = 30
+Panel/styles/panel = null
+RichTextLabel/colors/default_color = Color(0.396078, 0.32549, 0.4, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 1)
+RichTextLabel/constants/shadow_offset_x = 2
+RichTextLabel/constants/shadow_offset_y = 1

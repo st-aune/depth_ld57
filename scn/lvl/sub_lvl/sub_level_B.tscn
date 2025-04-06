@@ -1,16 +1,39 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfaodrgvfddok"]
+[gd_scene load_steps=14 format=3 uid="uid://bfaodrgvfddok"]
 
 [ext_resource type="PackedScene" uid="uid://bnbht6833uvx7" path="res://scn/entity/peon/pv_wall.tscn" id="1_4v2k6"]
 [ext_resource type="PackedScene" uid="uid://d4eq7nxnnwdrf" path="res://scn/entity/peon/Damage_bloc.tscn" id="2_beuip"]
 [ext_resource type="PackedScene" uid="uid://d0p6xtogvo5ek" path="res://scn/entity/Stamina/stamina_stoler.tscn" id="3_06asp"]
 [ext_resource type="PackedScene" uid="uid://dadaqqm6dcg5l" path="res://scn/entity/Stamina/StaminaBase.tscn" id="4_pku2s"]
 [ext_resource type="Script" uid="uid://dbi61rh706es7" path="res://scn/lvl/focus.gd" id="5_svy5p"]
+[ext_resource type="Shader" uid="uid://bjsy4pvo1a0sa" path="res://scn/lvl/wall/sol.gdshader" id="6_06asp"]
+[ext_resource type="Texture2D" uid="uid://ckww0k87h5es2" path="res://scn/deco/back2.png" id="7_06asp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k88hj"]
 size = Vector2(88, 443.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v2k6"]
+size = Vector2(384, 402)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdkw7"]
 size = Vector2(154, 36)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_svy5p"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_it78x"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_svy5p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_55hv8"]
+shader = ExtResource("6_06asp")
+shader_parameter/overridecolor = Color(0.992157, 0.835294, 0.772549, 0.619608)
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_it78x")
+shader_parameter/scaler = Vector2(0.5, 0.5)
+shader_parameter/noise_scaler = Vector2(0.395, 0.58)
+shader_parameter/offset = Vector2(0, 0)
 
 [node name="SubLevelA" type="Node2D"]
 
@@ -109,8 +132,8 @@ script = ExtResource("5_svy5p")
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="miniLevel/FOCUS/Area2D"]
-position = Vector2(-20, -256)
-shape = SubResource("RectangleShape2D_bdkw7")
+position = Vector2(-9, -73)
+shape = SubResource("RectangleShape2D_4v2k6")
 debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="miniLevel/FOCUS/Area2D"]
@@ -160,8 +183,8 @@ debug_color = Color(0, 0, 0, 0.42)
 [node name="PvWall" parent="miniLevel2" instance=ExtResource("1_4v2k6")]
 position = Vector2(579, 621)
 scale = Vector2(8.39997, 6.40515)
-initial_pv = 3
-pv = 3
+initial_pv = 2
+pv = 2
 
 [node name="DamageBloc" parent="miniLevel2" instance=ExtResource("2_beuip")]
 position = Vector2(-61, 227)
@@ -199,12 +222,12 @@ scale = Vector2(3.5337, -3.3593)
 
 [node name="DamageBloc3" parent="miniLevel2" instance=ExtResource("2_beuip")]
 position = Vector2(571, 484)
-scale = Vector2(5.76216, 3.17949)
+scale = Vector2(3.08998, 2.47066)
 destroy_on_hit = true
 
 [node name="DamageBloc5" parent="miniLevel2" instance=ExtResource("2_beuip")]
 position = Vector2(570, 415)
-scale = Vector2(5.76216, 3.17949)
+scale = Vector2(2.9871, 2.60858)
 destroy_on_hit = true
 
 [node name="DamageBloc4" parent="miniLevel2" instance=ExtResource("2_beuip")]
@@ -271,6 +294,8 @@ debug_color = Color(0, 0, 0, 0.42)
 [node name="PvWall" parent="miniLevel3" instance=ExtResource("1_4v2k6")]
 position = Vector2(579, 621)
 scale = Vector2(8.39997, 6.40515)
+initial_pv = 3
+pv = 3
 
 [node name="DamageBloc" parent="miniLevel3" instance=ExtResource("2_beuip")]
 position = Vector2(-61, 227)
@@ -433,20 +458,37 @@ z_index = -200
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="bacl"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_55hv8")
+color = Color(0.693676, 0.704284, 0.683154, 1)
+texture = ExtResource("7_06asp")
+texture_scale = Vector2(5, 5)
 polygon = PackedVector2Array(338, 713, 493, 705, 493, 597, 669, 601, 673, 701, 821, 705, 824, 1078, 680, 1078, 683, 1152, 484, 1154, 496, 1067, 333, 1062)
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D4" type="Polygon2D" parent="bacl"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_55hv8")
 position = Vector2(-13, -522)
+texture = ExtResource("7_06asp")
+texture_scale = Vector2(5, 5)
 polygon = PackedVector2Array(338, 713, 493, 705, 493, 597, 669, 601, 673, 701, 821, 705, 824, 1078, 680, 1078, 683, 1152, 484, 1154, 496, 1067, 333, 1062)
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D2" type="Polygon2D" parent="bacl"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_55hv8")
 position = Vector2(0, 547)
+texture = ExtResource("7_06asp")
+texture_scale = Vector2(5, 5)
 polygon = PackedVector2Array(342, 699, 493, 701, 492, 613, 673, 609, 668, 697, 825, 697, 824, 1078, 680, 1078, 683, 1152, 484, 1154, 496, 1067, 333, 1062)
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D3" type="Polygon2D" parent="bacl"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_55hv8")
 position = Vector2(8, 1075)
+texture = ExtResource("7_06asp")
+texture_scale = Vector2(5, 5)
 polygon = PackedVector2Array(342, 699, 493, 701, 492, 613, 673, 609, 668, 697, 825, 697, 824, 1078, 680, 1078, 683, 1152, 484, 1154, 496, 1067, 333, 1062)
 metadata/_edit_lock_ = true
