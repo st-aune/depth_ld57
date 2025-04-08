@@ -11,31 +11,53 @@ var input_mode = EINPUT.MOUSE
 var last_dir := Vector2.ONE
 var direction
 var mouspos : Vector2 = Vector2.ZERO
-
+@onready var player :Player = $".."
 var next_two_impact := [Vector2.ZERO,Vector2.ZERO]
 
 func _ready():
 	mouspos = get_global_mouse_position()
 	second_ray = get_tree().get_first_node_in_group("raycaster")
 	
+func restart():
+	if GameManager.game_state == GameManager.EGameState.RESPAWNING:
+		return
+	GameManager.respawn()
+	GameManager.player_stamina = 3
+	player.global_position = GameManager.checkpoint
+	GameManager.focus_on.emit(player.global_position)
+	await get_tree().create_timer(0.8).timeout
+	player.state = Player.EState.STOPPED
+	GameManager.game_state = GameManager.EGameState.PLAY
+	GameManager.dispatch_event("RESTART")
+	
 func _process(delta):
+	if GameManager.game_state == GameManager.EGameState.RESPAWNING:
+		return
+	if Input.is_action_just_pressed("restart"):
+		player.state = Player.EState.DEAD
+		restart.call_deferred()
+		return
+	if player.state == Player.EState.DEAD:
+		if Input.is_action_just_pressed("action"):
+			restart.call_deferred()
+		return
 	if Input.is_action_just_pressed("action"):
 		print("Action stop")
-		$"..".stop()
+		player.stop()
 	if  Input.is_action_just_released("action"):
-		$"..".go(direction)
-	if $"..".state == Player.EState.MOVING:
+		player.go(direction)
+	if player.state == Player.EState.MOVING:
 		return
 	var new_dir := Vector2.ZERO
 	#if (get_global_mouse_position() - mouspos).length_squared() > 1.0:
 		#new_dir = get_global_mouse_position() - global_position
 		#mouspos = get_global_mouse_position()
-	new_dir = get_global_mouse_position() - global_position
-	new_dir += Input.get_vector("left", "right", "up", "down")
-	last_dir = lerp(last_dir+Vector2.ONE*0.001,new_dir, delta * lag_dir)
+	new_dir = get_global_mouse_position() - get_parent().global_position
+	#new_dir += Input.get_vector("left", "right", "up", "down")
+	last_dir = new_dir #lerp(last_dir+Vector2.ONE*0.001,new_dir, delta * lag_dir)
 	
 	direction = last_dir.normalized()
-	%pivot.look_at(to_global(direction))
+	%pivot.look_at(get_global_mouse_position())
 	player_ray.force_raycast_update()
 	if player_ray.is_colliding():
 		

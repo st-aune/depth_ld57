@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0p6xtogvo5ek"]
+[gd_scene load_steps=7 format=3 uid="uid://d0p6xtogvo5ek"]
 
 [ext_resource type="PackedScene" uid="uid://dadaqqm6dcg5l" path="res://scn/entity/Stamina/StaminaBase.tscn" id="1_4cn74"]
 [ext_resource type="Texture2D" uid="uid://bxof3tx1tlm23" path="res://scn/entity/Stamina/bad (4).png" id="2_l65v7"]
+[ext_resource type="AudioStream" uid="uid://phnl824ghoef" path="res://scn/entity/player/aieA.wav" id="3_frvmo"]
+[ext_resource type="AudioStream" uid="uid://b5i4obff1knn0" path="res://scn/entity/player/AieB.wav" id="4_u7i84"]
+[ext_resource type="AudioStream" uid="uid://crjkif8kpmykl" path="res://scn/entity/player/AieC.wav" id="5_cwdh5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_54h2t"]
+random_pitch = 1.97
+random_volume_offset_db = 2.59
+streams_count = 3
+stream_0/stream = ExtResource("3_frvmo")
+stream_1/stream = ExtResource("4_u7i84")
+stream_2/stream = ExtResource("5_cwdh5")
 
 [node name="StaminaBloc" instance=ExtResource("1_4cn74")]
 stamina_per_hit = -1
@@ -9,7 +20,16 @@ stamina_per_hit = -1
 [node name="CollisionShape2D" parent="." index="0"]
 debug_color = Color(0.806083, 0.0169909, 0.38456, 0.42)
 
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+visible = true
+
 [node name="Stam(1)" parent="Render" index="0"]
 position = Vector2(-0.0714285, -1)
 scale = Vector2(0.309524, 0.3)
 texture = ExtResource("2_l65v7")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_54h2t")
+volume_db = -2.0
+
+[connection signal="bounce" from="." to="Hurt" method="play"]

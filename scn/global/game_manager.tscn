@@ -1,10 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://eavmc1s11r1l"]
+[gd_scene load_steps=9 format=3 uid="uid://eavmc1s11r1l"]
 
 [ext_resource type="Script" uid="uid://dpwovi43em1mg" path="res://scn/global/event_game.gd" id="1_cbll4"]
 [ext_resource type="Script" uid="uid://bxal3rostcyum" path="res://scn/global/fx_handler.gd" id="2_gsugb"]
+[ext_resource type="AudioStream" uid="uid://cxorsoyu2eown" path="res://scn/entity/player/heal.wav" id="3_tkcsn"]
+[ext_resource type="AudioStream" uid="uid://bh4qubtcqrk38" path="res://scn/entity/player/get2.wav" id="4_ae6sv"]
+[ext_resource type="AudioStream" uid="uid://d3paucwof1s47" path="res://scn/entity/player/get3.wav" id="5_8yqyr"]
+[ext_resource type="AudioStream" uid="uid://cuiyrg4ub68hh" path="res://scn/entity/player/Jam.mp3" id="6_li8iw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_li8iw"]
+random_pitch = 1.97
+random_volume_offset_db = 2.59
+streams_count = 1
+stream_0/stream = ExtResource("3_tkcsn")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8yqyr"]
+playback_mode = 1
+random_pitch = 1.97
+random_volume_offset_db = 2.59
+streams_count = 2
+stream_0/stream = ExtResource("4_ae6sv")
+stream_1/stream = ExtResource("5_8yqyr")
+stream_1/weight = 3.0
 
 [node name="EventGame" type="Node2D"]
 script = ExtResource("1_cbll4")
 
 [node name="FX_handler" type="Node2D" parent="."]
 script = ExtResource("2_gsugb")
+
+[node name="heal" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_li8iw")
+volume_db = -1.0
+
+[node name="getit" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8yqyr")
+volume_db = -1.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_li8iw")
+volume_db = -2.364
+autoplay = true
+
+[connection signal="player_do_dammage" from="." to="getit" method="play" unbinds=1]
+[connection signal="player_stamina_gain" from="." to="heal" method="play"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca3lo6i0lq66k"]
+
+[ext_resource type="PackedScene" uid="uid://ck8nowd7mpn1c" path="res://scn/entity/Stamina/stamina_bloc_gros.tscn" id="1_kw5q3"]
+[ext_resource type="Texture2D" uid="uid://dns3ko83kpax3" path="res://scn/entity/Stamina/stam (2).png" id="2_nyvwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbxgi"]
+size = Vector2(46, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyvwi"]
+size = Vector2(46.3333, 11.3333)
+
+[node name="StaminaBloc" instance=ExtResource("1_kw5q3")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_pbxgi")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-0.166666, -0.333333)
+shape = SubResource("RectangleShape2D_nyvwi")
+
+[node name="Stam(1)" parent="Render" index="0"]
+texture = ExtResource("2_nyvwi")

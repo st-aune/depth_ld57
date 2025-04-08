@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://3mdwyjos8mdw"]
+[gd_scene load_steps=23 format=3 uid="uid://3mdwyjos8mdw"]
 
 [ext_resource type="PackedScene" uid="uid://sw1fxa0c7anq" path="res://scn/entity/player/player.tscn" id="1_flxa2"]
 [ext_resource type="PackedScene" uid="uid://bdsphltalbagp" path="res://scn/entity/player/drawer.tscn" id="2_ttd7b"]
@@ -6,95 +6,151 @@
 [ext_resource type="Script" uid="uid://g003ms2itmdg" path="res://scn/lvl/camera_2d.gd" id="6_4p4ot"]
 [ext_resource type="Script" uid="uid://bngys0u5xro0p" path="res://scn/lvl/cameraman.gd" id="6_6dnf4"]
 [ext_resource type="Theme" uid="uid://c0btyxvbmu35h" path="res://scn/UI/Base.tres" id="6_7x5xa"]
-[ext_resource type="PackedScene" uid="uid://bfaodrgvfddok" path="res://scn/lvl/sub_lvl/sub_level_B.tscn" id="7_6dnf4"]
+[ext_resource type="Script" uid="uid://cjpqsraywlf0q" path="res://scn/UI/control.gd" id="7_56w8y"]
+[ext_resource type="FontFile" uid="uid://dhtrgrdafv5sa" path="res://scn/global/SimplyMono-Book.ttf" id="8_0g7co"]
 [ext_resource type="Script" uid="uid://bt77pvawp0j2m" path="res://scn/lvl/stamina_ui.gd" id="8_7x5xa"]
+[ext_resource type="Script" uid="uid://cu48b2i6li64b" path="res://scn/UI/game_over.gd" id="8_tqjum"]
+[ext_resource type="PackedScene" uid="uid://bk38tm3qxpqi1" path="res://scn/lvl/sub_lvl/partiB.tscn" id="10_0dak3"]
+[ext_resource type="PackedScene" uid="uid://ruvad4fc2gj3" path="res://scn/lvl/sub_lvl/partiA.tscn" id="10_56w8y"]
+[ext_resource type="PackedScene" uid="uid://bux2i017trne6" path="res://scn/lvl/checkpoint.tscn" id="10_u7ksn"]
+[ext_resource type="Script" uid="uid://dv5e6dq7cebww" path="res://scn/lvl/gagner.gd" id="14_1qtcs"]
+
+[sub_resource type="Curve" id="Curve_7x5xa"]
+_data = [Vector2(0.00990099, 0.988764), 0.0, -0.0674158, 0, 1, Vector2(0.509901, 0.955056), 0.0, 0.0, 0, 0, Vector2(0.985148, 0.292135), -1.3949, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="ImageTexture" id="ImageTexture_7x5xa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dak3"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.396078, 0.32549, 0.4, 0.4)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0, 0, 0, 0.592157)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+border_color = Color(0.396078, 0.32549, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 expand_margin_top = 15.0
 expand_margin_bottom = 14.0
 shadow_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qtcs"]
 bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 expand_margin_top = 14.0
 expand_margin_bottom = 14.0
+
+[sub_resource type="ImageTexture" id="ImageTexture_tqjum"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dak3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g7co"]
-bg_color = Color(0.158448, 0.549208, 0.81308, 1)
+bg_color = Color(0.924808, 0.625897, 0.872686, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 2
 expand_margin_top = 14.0
 expand_margin_bottom = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g7co"]
+size = Vector2(512, 442)
 
 [node name="Lvl" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_flxa2")]
-position = Vector2(0, 11)
+position = Vector2(2, -86)
 
 [node name="secondRay" type="RayCast2D" parent="." groups=["raycaster"]]
-position = Vector2(-515, -330)
+position = Vector2(0, 15)
 
 [node name="drawer" parent="." instance=ExtResource("2_ttd7b")]
 visible = false
+z_index = 3
 points = PackedVector2Array(-229, 230)
 width = 2.0
-default_color = Color(0, 0, 0, 1)
+width_curve = SubResource("Curve_7x5xa")
+default_color = Color(0.92549, 0.623529, 0.87451, 1)
+antialiased = true
 script = ExtResource("3_tqcc2")
 
 [node name="Cameraman" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(94, 5)
 script = ExtResource("6_6dnf4")
 target = NodePath("../Player")
 cam_dead_zone = 450
 
 [node name="Camera2D" type="Camera2D" parent="Cameraman"]
-position = Vector2(-90, 6)
 ignore_rotation = false
 script = ExtResource("6_4p4ot")
 
-[node name="Control" type="Control" parent="Cameraman"]
+[node name="Control" type="Control" parent="Cameraman/Camera2D"]
+z_index = 100
 layout_mode = 3
-anchors_preset = 0
-offset_left = -476.0
-offset_top = 130.0
-offset_right = 504.0
-offset_bottom = 308.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -459.0
+offset_top = -315.0
+offset_right = -459.0
+offset_bottom = -315.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(463, 262)
 theme = ExtResource("6_7x5xa")
+script = ExtResource("7_56w8y")
 
-[node name="StaminaUI" type="Control" parent="Cameraman/Control"]
+[node name="timer" type="RichTextLabel" parent="Cameraman/Camera2D/Control"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 38.0
+offset_right = 905.0
+offset_bottom = 147.0
+pivot_offset = Vector2(401, 56)
+theme_override_fonts/mono_font = ExtResource("8_0g7co")
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "00:00:00:00"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StaminaUI" type="Control" parent="Cameraman/Camera2D/Control"]
+z_index = 10
 anchors_preset = 0
-offset_left = -73.0
-offset_top = 158.0
-offset_right = -33.0
-offset_bottom = 198.0
+offset_left = 548.0
+offset_top = 26.0
+offset_right = 588.0
+offset_bottom = 66.0
 script = ExtResource("8_7x5xa")
 
-[node name="Stamina_feedback" type="HSlider" parent="Cameraman/Control/StaminaUI"]
+[node name="Stamina_feedback" type="HSlider" parent="Cameraman/Camera2D/Control/StaminaUI"]
 layout_mode = 0
-offset_right = 434.0
-offset_bottom = 16.0
+offset_left = -305.0
+offset_top = -10.0
+offset_right = 129.0
+offset_bottom = 6.0
 focus_mode = 0
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_7x5xa")
 theme_override_styles/slider = SubResource("StyleBoxFlat_0dak3")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1qtcs")
 step = 0.01
 editable = false
 scrollable = false
 
-[node name="Stamina" type="HSlider" parent="Cameraman/Control/StaminaUI"]
+[node name="Stamina" type="HSlider" parent="Cameraman/Camera2D/Control/StaminaUI"]
 layout_mode = 0
-offset_right = 434.0
-offset_bottom = 16.0
+offset_left = -310.0
+offset_top = -17.0
+offset_right = 124.0
+offset_bottom = -1.0
 focus_mode = 0
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_tqjum")
 theme_override_styles/slider = SubResource("StyleBoxEmpty_0dak3")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_0g7co")
 step = 0.01
@@ -102,10 +158,10 @@ value = 50.0
 editable = false
 scrollable = false
 
-[node name="Node2D" type="Node2D" parent="Cameraman/Control/StaminaUI"]
-position = Vector2(218, -19)
+[node name="Node2D" type="Node2D" parent="Cameraman/Camera2D/Control/StaminaUI"]
+position = Vector2(-91, 55)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Cameraman/Control/StaminaUI/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Cameraman/Camera2D/Control/StaminaUI/Node2D"]
 offset_left = -98.0
 offset_top = -42.0
 offset_right = 97.0
@@ -117,7 +173,150 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubLevelA" parent="." instance=ExtResource("7_6dnf4")]
-position = Vector2(-559, -177)
+[node name="GameOver" type="Control" parent="Cameraman/Camera2D/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_tqjum")
+
+[node name="Blakc" type="Control" parent="Cameraman/Camera2D/Control/GameOver"]
+anchors_preset = 0
+offset_left = 456.0
+offset_top = 355.0
+offset_right = 496.0
+offset_bottom = 395.0
+rotation = 0.529664
+
+[node name="PanelA" type="Panel" parent="Cameraman/Camera2D/Control/GameOver/Blakc"]
+layout_mode = 0
+offset_left = -791.174
+offset_top = -1418.65
+offset_right = 907.826
+offset_bottom = -705.653
+pivot_offset = Vector2(832.293, 705.105)
+
+[node name="PanelA2" type="Panel" parent="Cameraman/Camera2D/Control/GameOver/Blakc"]
+layout_mode = 0
+offset_left = -1014.33
+offset_top = 703.938
+offset_right = 599.674
+offset_bottom = 1416.94
+pivot_offset = Vector2(839.966, 0.817871)
+
+[node name="gameover_msg" type="RichTextLabel" parent="Cameraman/Camera2D/Control/GameOver"]
+visible = false
+layout_mode = 0
+offset_top = 277.0
+offset_right = 901.0
+offset_bottom = 450.0
+pivot_offset = Vector2(458, 82)
+text = "Out of stamina, game over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart" type="RichTextLabel" parent="Cameraman/Camera2D/Control/GameOver"]
+visible = false
+layout_mode = 0
+offset_top = 386.0
+offset_right = 901.0
+offset_bottom = 559.0
+pivot_offset = Vector2(462, 93)
+theme_override_font_sizes/normal_font_size = 30
+text = "Click anywhere to restart."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Win" type="Control" parent="Cameraman/Camera2D/Control"]
+visible = false
+anchors_preset = 0
+offset_left = 157.0
+offset_top = 191.0
+offset_right = 734.0
+offset_bottom = 372.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Cameraman/Camera2D/Control/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "WELL DONE!
+THank you for playing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pin" type="Control" parent="Cameraman/Camera2D/Control/Win"]
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 185.0
+offset_right = 340.0
+offset_bottom = 225.0
+pivot_offset = Vector2(20, 27)
+
+[node name="timer" type="RichTextLabel" parent="Cameraman/Camera2D/Control/Win"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 173.0
+offset_right = 435.0
+offset_bottom = 282.0
+pivot_offset = Vector2(333, 56)
+theme_override_fonts/mono_font = ExtResource("8_0g7co")
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "00:00:00:00"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Cameraman/Camera2D/Control"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = -3.0
+offset_right = 161.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 15
+text = "restart"
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-672, 1199)
+rotation = 1.57079
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-183, 741)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-1146, 2199)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-1016, 2846)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-1139, 3394)
+
+[node name="Checkpoint6" parent="." instance=ExtResource("10_u7ksn")]
+position = Vector2(-1131, 4809)
+
+[node name="PartieA" parent="." instance=ExtResource("10_56w8y")]
+z_index = -5
+position = Vector2(4, -84)
+
+[node name="PartieA2" parent="." instance=ExtResource("10_0dak3")]
+z_index = -5
+position = Vector2(-1142, 2491)
+
+[node name="Gagner" type="Area2D" parent="."]
+position = Vector2(-1153, 5829)
+script = ExtResource("14_1qtcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gagner"]
+position = Vector2(15, 3)
+shape = SubResource("RectangleShape2D_0g7co")
 
 [editable path="Player"]

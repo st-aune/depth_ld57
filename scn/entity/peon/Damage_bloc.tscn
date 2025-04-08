@@ -10,6 +10,7 @@
 size = Vector2(22, 22)
 
 [node name="DamageBloc" type="StaticBody2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_mkraf")
 destroy_on_hit = false
 
@@ -18,7 +19,6 @@ visible = false
 shape = SubResource("RectangleShape2D_2bnfr")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_mkraf")

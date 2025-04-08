@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjlpoiapepjbm"]
+
+[ext_resource type="PackedScene" uid="uid://d0p6xtogvo5ek" path="res://scn/entity/Stamina/stamina_stoler.tscn" id="1_23c7e"]
+[ext_resource type="Texture2D" uid="uid://hi36mtegdvee" path="res://scn/entity/Stamina/bad (3).png" id="2_klo8s"]
+
+[node name="StaminaBloc" instance=ExtResource("1_23c7e")]
+
+[node name="Stam(1)" parent="Render" index="0"]
+position = Vector2(0, 0)
+scale = Vector2(0.301429, 0.292154)
+texture = ExtResource("2_klo8s")

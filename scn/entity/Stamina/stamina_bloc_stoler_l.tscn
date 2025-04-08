@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpvqk0di0rv3s"]
+
+[ext_resource type="PackedScene" uid="uid://d0p6xtogvo5ek" path="res://scn/entity/Stamina/stamina_stoler.tscn" id="1_vtl3v"]
+[ext_resource type="Texture2D" uid="uid://dmilhbj0jurko" path="res://scn/entity/Stamina/bad (2).png" id="2_2mflk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e470p"]
+size = Vector2(58, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mflk"]
+size = Vector2(61.3333, 10.3333)
+
+[node name="StaminaBloc" instance=ExtResource("1_vtl3v")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_e470p")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+visible = true
+position = Vector2(6.35783e-07, -1.16667)
+shape = SubResource("RectangleShape2D_2mflk")
+
+[node name="Stam(1)" parent="Render" index="0"]
+texture = ExtResource("2_2mflk")

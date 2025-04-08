@@ -5,7 +5,7 @@ var time_range := 0.5
 var text_label_int : int = 0 :
 	set(value) :
 		text_label_int = value 
-		$NodeLabel/Label.text = str(text_label_int) + "/" + str($"..".initial_pv)
+		$NodeLabel/Label.text = str($"..".initial_pv-text_label_int) + "/" + str($"..".initial_pv)
 		squash_text()
 		
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func updated_pv(new_pv):
-	create_tween().tween_property($PV,"value",new_pv,time_range*0.2).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	create_tween().tween_property($PV,"value",new_pv,time_range*0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	create_tween().tween_property($feedback,"value",new_pv,time_range).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	create_tween().tween_property(self,"text_label_int",new_pv,time_range*1.0)
 

@@ -26,12 +26,18 @@ var state = EState.STOPPED :
 			stoped.emit()
 			GameManager.player_stop.emit()
 		if state == EState.DEAD:
+			freeze = true
+			GameManager.dispatch_event("GAMEOVER")
 			dead.emit()
+
+
+func on_no_more_stamina():
+	state = EState.DEAD
 
 func _ready() -> void:
 	stop()
 	move.connect(GameManager.player_move.emit)
-
+	GameManager.no_more_stamina.connect(on_no_more_stamina)
 func go(impulse_dir : Vector2,impulse_force : float  = -1 ):
 	print("GO")
 	gravity_scale = 0.0
@@ -70,5 +76,6 @@ func stop():
 	freeze = true
 	if GameManager.player_stamina <= 0:
 		state = EState.DEAD
+		return
 	state = EState.STOPPED
 	

@@ -7,6 +7,8 @@ signal bounce
 @export var dammage_per_hit := 1
 @export var destroy_on_hit := true
 
+@export var destroy_on_success := true
+
 var _active_at_start : bool
 var _monitoring_at_start : bool
 
@@ -15,8 +17,12 @@ func _ready() -> void:
 	_active_at_start = $CollisionShape2D.disabled
 	_monitoring_at_start = $Area2D.monitoring
 	GameManager.player_stop.connect(reset)
-	
-	
+	if destroy_on_success:
+		for node in get_parent().get_children():
+			if node is PVWall :
+				node.wall_died.connect(queue_free)
+		
+		
 func _on_player_collide(body: Node2D):
 	if not(body is Player):
 		return
@@ -28,6 +34,7 @@ func _on_player_collide(body: Node2D):
 		$Area2D.monitoring = false
 		$CollisionShape2D.disabled = true
 		activity.emit(false)
+		
 func reset():
 	$Area2D.monitoring = _monitoring_at_start
 	$CollisionShape2D.disabled = _active_at_start

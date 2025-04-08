@@ -22,6 +22,8 @@ func _on_player_collide(body: Node2D):
 		return
 	bounce.emit()
 	GameManager.player_stamina += stamina_per_hit
+	if stamina_per_hit < 0 :
+		GameManager.dispatch_event("DAMAGED")
 	if destroy_on_hit:
 		await get_tree().create_timer(0.05).timeout
 		$Area2D.monitoring = false

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpd2a64x2pumm"]
+
+[ext_resource type="PackedScene" uid="uid://d4eq7nxnnwdrf" path="res://scn/entity/peon/Damage_bloc.tscn" id="1_c0uvq"]
+[ext_resource type="Texture2D" uid="uid://dn2db8eclxrtt" path="res://scn/entity/peon/dam_l.png" id="2_6po2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuh7n"]
+size = Vector2(38, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6po2m"]
+size = Vector2(39.6667, 21.6667)
+
+[node name="DamageBloc" instance=ExtResource("1_c0uvq")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+visible = true
+shape = SubResource("RectangleShape2D_vuh7n")
+
+[node name="Area2D" parent="." index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.166666, -0.166667)
+shape = SubResource("RectangleShape2D_6po2m")
+
+[node name="Dam" parent="Render" index="0"]
+texture = ExtResource("2_6po2m")

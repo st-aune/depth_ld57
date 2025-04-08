@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://26suuekfbxhm"]
+
+[ext_resource type="Texture2D" uid="uid://q0j84r77610e" path="res://scn/lvl/wall/Illustration_sans_titre_29.png" id="1_obhqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaqi0"]
+size = Vector2(19, 19)
+
+[node name="Node2D" type="StaticBody2D"]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_oaqi0")
+
+[node name="IllustrationSansTitre21" type="Sprite2D" parent="."]
+position = Vector2(-5.36442e-07, -4.17233e-07)
+scale = Vector2(0.305556, 0.314286)
+texture = ExtResource("1_obhqd")

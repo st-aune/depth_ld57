@@ -2,7 +2,6 @@
 
 [node name="FxLine" type="Line2D"]
 points = PackedVector2Array(16, 55, 1, -1)
-default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D" type="Line2D" parent="."]
 show_behind_parent = true

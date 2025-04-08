@@ -9,17 +9,33 @@ var force_power = 2  # Trauma exponent. Use [2, 3].
 
 func _ready() -> void:
 	print("subscribe")
-	GameManager.eventDispatched.connect(handleEvent)
+	GameManager.eventDispatched.connect(handleEvent,CONNECT_DEFERRED)
+	#GameManager.player_stamina_loose.connect(doShake.bind(0.3))
+	GameManager.player_do_dammage.connect(doShakedFoo.bind(0.15))
+	GameManager.player_stamina_gain.connect(doShake.bind(0.15))
+	GameManager.zoom_at.connect(zoom_at)
+
+func zoom_at(zoom_factor):
+	create_tween().tween_property(self,"zoom",Vector2.ONE * zoom_factor,1.0)
+
+	
+func doShakedFoo(foo, amount):
+	doShake(amount)
 
 func handleEvent(event_name):
 	print("receive " + event_name)
-	if event_name == "dammage":
+	if event_name == "DAMAGED":
+		Engine.time_scale = 0.3
+		await get_tree().create_timer(0.05,true,false,true).timeout
+		Engine.time_scale = 1.0
 		doShake(0.2)
+		
 	if event_name == "coup_fatal":
 		doShake(0.3)
-
+	if event_name == "RESTART":
+		position = Vector2.ZERO
 func doShake(amount=0.5):
-	force = min(force + amount, 0.4)
+	force = min(force + amount, 0.2)
 
 func shake():
 	var amount = pow(force, force_power)

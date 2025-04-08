@@ -1,0 +1,686 @@
+[gd_scene load_steps=33 format=3 uid="uid://bk38tm3qxpqi1"]
+
+[ext_resource type="Shader" uid="uid://bjsy4pvo1a0sa" path="res://scn/lvl/wall/sol.gdshader" id="1_ttnit"]
+[ext_resource type="Texture2D" uid="uid://ckww0k87h5es2" path="res://scn/deco/back2.png" id="2_xiahn"]
+[ext_resource type="Texture2D" uid="uid://d4jv1px8qjpq7" path="res://scn/deco/contour.png" id="3_kh8kp"]
+[ext_resource type="PackedScene" uid="uid://r3ls53pqwb0g" path="res://scn/lvl/wall/blocLong.tscn" id="4_x73wb"]
+[ext_resource type="PackedScene" uid="uid://315bd5lo1vqq" path="res://scn/lvl/wall/bloc2.tscn" id="5_jae4u"]
+[ext_resource type="PackedScene" uid="uid://d4eq7nxnnwdrf" path="res://scn/entity/peon/Damage_bloc.tscn" id="6_t5ltd"]
+[ext_resource type="PackedScene" uid="uid://bnbht6833uvx7" path="res://scn/entity/peon/pv_wall.tscn" id="7_fyds5"]
+[ext_resource type="Script" uid="uid://dbi61rh706es7" path="res://scn/lvl/focus.gd" id="8_pmh1t"]
+[ext_resource type="PackedScene" uid="uid://dadaqqm6dcg5l" path="res://scn/entity/Stamina/StaminaBase.tscn" id="10_45152"]
+[ext_resource type="Theme" uid="uid://c0btyxvbmu35h" path="res://scn/UI/Base.tres" id="10_xiahn"]
+[ext_resource type="PackedScene" uid="uid://bpd2a64x2pumm" path="res://scn/entity/peon/damage_bloc_big.tscn" id="11_700gq"]
+[ext_resource type="PackedScene" uid="uid://ca3lo6i0lq66k" path="res://scn/entity/Stamina/stamina_bloc_long.tscn" id="12_rnd2d"]
+[ext_resource type="PackedScene" uid="uid://bpvqk0di0rv3s" path="res://scn/entity/Stamina/stamina_bloc_stoler_l.tscn" id="13_lihxy"]
+[ext_resource type="Texture2D" uid="uid://dmbaoxnjm63g0" path="res://scn/entity/Stamina/stam (1).png" id="15_t5ltd"]
+[ext_resource type="Script" uid="uid://bxn7ekusjml7i" path="res://scn/lvl/sub_lvl/tourne.gd" id="15_xiahn"]
+[ext_resource type="PackedScene" uid="uid://cjlpoiapepjbm" path="res://scn/entity/Stamina/stoler_sim.tscn" id="16_jae4u"]
+[ext_resource type="PackedScene" uid="uid://ck8nowd7mpn1c" path="res://scn/entity/Stamina/stamina_bloc_gros.tscn" id="16_kh8kp"]
+[ext_resource type="Texture2D" uid="uid://3261lrb8a6rl" path="res://scn/entity/Stamina/bad (1).png" id="17_t5ltd"]
+[ext_resource type="Texture2D" uid="uid://dcws5vqt8xvio" path="res://scn/entity/Stamina/bad (5).png" id="18_fyds5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s0gr5"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_it78x"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_s0gr5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxvos"]
+shader = ExtResource("1_ttnit")
+shader_parameter/overridecolor = Color(0.992157, 0.835294, 0.772549, 0.619608)
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_it78x")
+shader_parameter/scaler = Vector2(0.5, 0.5)
+shader_parameter/noise_scaler = Vector2(0.395, 0.58)
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7o36"]
+size = Vector2(319.75, 444)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpjrb"]
+size = Vector2(2745, 203.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxvos"]
+size = Vector2(1049.73, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttnit"]
+size = Vector2(788.906, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5ltd"]
+size = Vector2(303, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0kur"]
+size = Vector2(303, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiahn"]
+size = Vector2(800, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kh8kp"]
+size = Vector2(1001, 539)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmh1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_t5ltd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fyds5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x73wb"]
+size = Vector2(761, 718)
+
+[node name="PartieA" type="Node2D"]
+
+[node name="back" type="Node2D" parent="."]
+z_index = -100
+
+[node name="Polygon2D" type="Polygon2D" parent="back"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_vxvos")
+color = Color(0.693676, 0.704284, 0.683154, 1)
+texture = ExtResource("2_xiahn")
+texture_scale = Vector2(5, 5)
+polygon = PackedVector2Array(-271, -312, -68, -316, -73, -635, 61, -639, 61, -316, 257, -314, 256, 177, 257, 275, 337, 273, 331, 1064, 454, 1064, 457, 3546, -456, 3552, -470, 1720, -450, 1057, -345, 1053, -341, 845, -334, 294, -269, 290)
+
+[node name="Line2D" type="Line2D" parent="back/Polygon2D"]
+points = PackedVector2Array(-271, -312, -68, -316, -73, -635, 61, -639, 61, -316, 257, -314, 256, 177, 257, 275, 337, 273, 331, 1064, 454, 1064, 457, 3546, -456, 3552, -470, 1720, -450, 1057, -345, 1053, -341, 845, -334, 294, -269, 290)
+closed = true
+texture = ExtResource("3_kh8kp")
+texture_mode = 1
+
+[node name="wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="wall"]
+position = Vector2(-295, -479)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e7o36")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="wall"]
+position = Vector2(287, -480)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e7o36")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="wall"]
+position = Vector2(-559.003, 2178.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_tpjrb")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="wall"]
+position = Vector2(559, 2186)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_tpjrb")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="wall"]
+position = Vector2(-348, -152)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vxvos")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="wall"]
+position = Vector2(338.001, -247.863)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vxvos")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="wall"]
+position = Vector2(414, 666)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ttnit")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="wall"]
+position = Vector2(-425, 655)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ttnit")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="wall"]
+position = Vector2(-18.5, 3628)
+shape = SubResource("RectangleShape2D_vxvos")
+
+[node name="Node2D" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-145, 106)
+
+[node name="Node2D14" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-95, 106)
+
+[node name="Node2D10" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-253, 106)
+
+[node name="Node2D11" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(210, 108)
+
+[node name="Node2D12" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-65, 106)
+
+[node name="Node2D15" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(132, -274)
+rotation = -1.57079
+
+[node name="Node2D16" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(132, -165)
+rotation = -1.57079
+
+[node name="Node2D17" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(132, -115)
+rotation = -1.57079
+
+[node name="Node2D2" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(185, 233)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D13" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(26, 233)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D18" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-13, 233)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D19" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-272, 358)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D20" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-142, 358)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D21" parent="wall" instance=ExtResource("4_x73wb")]
+position = Vector2(-34, 358)
+scale = Vector2(4.73662, 3.18775)
+
+[node name="Node2D9" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(-231, 779)
+rotation = -1.57079
+scale = Vector2(4.9925, 6.58906)
+
+[node name="Node2D25" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(-326, 1327)
+rotation = -1.57079
+scale = Vector2(3.55492, 9.24751)
+
+[node name="Node2D26" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(375, 1327)
+rotation = -1.57079
+scale = Vector2(3.55492, 9.24751)
+
+[node name="Node2D27" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(-283, 2204)
+rotation = -1.57079
+scale = Vector2(3.48271, 10.3753)
+
+[node name="Node2D29" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(-290, 3109)
+rotation = -1.57079
+scale = Vector2(3.48271, 10.3753)
+
+[node name="Node2D30" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(306, 3105)
+rotation = -1.57079
+scale = Vector2(3.48271, 10.3753)
+
+[node name="Node2D28" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(302, 2204)
+rotation = -1.57079
+scale = Vector2(3.48271, 10.3753)
+
+[node name="Node2D23" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(10, 477)
+rotation = -0.739052
+scale = Vector2(4.0919, 4.0517)
+
+[node name="Node2D24" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(-355, 269)
+scale = Vector2(4.0919, 4.0517)
+
+[node name="Node2D22" parent="wall" instance=ExtResource("5_jae4u")]
+position = Vector2(229, 779)
+rotation = -1.57079
+scale = Vector2(4.9925, 6.58906)
+
+[node name="lvl1" type="Node2D" parent="."]
+
+[node name="PvWall2" parent="lvl1" instance=ExtResource("7_fyds5")]
+z_index = 1
+position = Vector2(80, 126)
+initial_pv = 7
+pv = 7
+
+[node name="StaminaBloc3" parent="lvl1/PvWall2" instance=ExtResource("13_lihxy")]
+position = Vector2(1.19209e-06, -7.66667)
+scale = Vector2(1, 1)
+destroy_on_hit = false
+
+[node name="DamageBloc" parent="lvl1" instance=ExtResource("6_t5ltd")]
+position = Vector2(205, -278)
+destroy_on_success = false
+
+[node name="StaminaBloc" parent="lvl1" instance=ExtResource("12_rnd2d")]
+position = Vector2(208, 38)
+rotation = -0.785397
+destroy_on_hit = false
+
+[node name="StaminaBloc5" parent="lvl1" instance=ExtResource("12_rnd2d")]
+position = Vector2(-273, 197)
+rotation = -1.309
+scale = Vector2(3.88, 3)
+destroy_on_hit = false
+
+[node name="StaminaBloc6" parent="lvl1" instance=ExtResource("12_rnd2d")]
+position = Vector2(251, 170)
+rotation = -1.57079
+scale = Vector2(2.02431, 3.13349)
+destroy_on_hit = false
+
+[node name="StaminaBloc2" parent="lvl1" instance=ExtResource("13_lihxy")]
+position = Vector2(106, -149)
+rotation = -1.57079
+destroy_on_hit = false
+
+[node name="FOCUS" type="Node2D" parent="lvl1"]
+position = Vector2(1, -73)
+script = ExtResource("8_pmh1t")
+zoom = 1.3
+
+[node name="Area2D" type="Area2D" parent="lvl1/FOCUS"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lvl1/FOCUS/Area2D"]
+position = Vector2(1, -205.5)
+shape = SubResource("RectangleShape2D_t5ltd")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lvl1/FOCUS/Area2D"]
+position = Vector2(55, 165)
+shape = SubResource("RectangleShape2D_f0kur")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="FOCUS2" type="Node2D" parent="lvl1"]
+position = Vector2(2, -502)
+script = ExtResource("8_pmh1t")
+zoom = 0.8
+
+[node name="Area2D" type="Area2D" parent="lvl1/FOCUS2"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lvl1/FOCUS2/Area2D"]
+position = Vector2(-4, -114)
+shape = SubResource("RectangleShape2D_f0kur")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lvl1/FOCUS2/Area2D"]
+position = Vector2(-2, 125)
+shape = SubResource("RectangleShape2D_f0kur")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="Label" type="Label" parent="lvl1"]
+z_index = -1
+offset_left = -262.0
+offset_top = -303.0
+offset_right = 88.0
+offset_bottom = -243.0
+theme = ExtResource("10_xiahn")
+text = "Keep it up!"
+
+[node name="StaminaBloc3" parent="lvl1" instance=ExtResource("16_kh8kp")]
+position = Vector2(-248, 34)
+rotation = 1.57079
+
+[node name="PvWall" parent="lvl1" instance=ExtResource("7_fyds5")]
+z_index = 1
+position = Vector2(-246, -33)
+scale = Vector2(2.50258, 2.08223)
+initial_pv = 1
+pv = 1
+
+[node name="PvWall4" parent="lvl1" instance=ExtResource("7_fyds5")]
+z_index = 1
+position = Vector2(98, -154)
+rotation = 1.57079
+scale = Vector2(3.57344, 3.06253)
+initial_pv = 1
+pv = 1
+
+[node name="NodeLabel" parent="lvl1/PvWall4/UI" index="2"]
+position = Vector2(52.7689, 38.5326)
+rotation = -1.57079
+
+[node name="PvWall5" parent="lvl1" instance=ExtResource("7_fyds5")]
+z_index = 6
+position = Vector2(87, 105)
+scale = Vector2(4.13011, 5.09893)
+initial_pv = 1
+pv = 1
+
+[node name="PvWall3" parent="lvl1" instance=ExtResource("7_fyds5")]
+position = Vector2(-196, 20)
+rotation = 1.57079
+scale = Vector2(2.50258, 2.08223)
+initial_pv = 1
+pv = 1
+
+[node name="NodeLabel" parent="lvl1/PvWall3/UI" index="2"]
+visible = false
+
+[node name="lvl2" type="Node2D" parent="."]
+position = Vector2(0, 440)
+
+[node name="FOCUS2" type="Node2D" parent="lvl2"]
+position = Vector2(9, -220)
+script = ExtResource("8_pmh1t")
+zoom = 1.3
+
+[node name="Area2D" type="Area2D" parent="lvl2/FOCUS2"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lvl2/FOCUS2/Area2D"]
+position = Vector2(47, -82)
+shape = SubResource("RectangleShape2D_f0kur")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lvl2/FOCUS2/Area2D"]
+position = Vector2(-139, 5)
+shape = SubResource("RectangleShape2D_f0kur")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="FOCUS3" type="Node2D" parent="lvl2"]
+position = Vector2(9, 48)
+script = ExtResource("8_pmh1t")
+
+[node name="Area2D" type="Area2D" parent="lvl2/FOCUS3"]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lvl2/FOCUS3/Area2D"]
+position = Vector2(-7, -132.5)
+shape = SubResource("RectangleShape2D_xiahn")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="FOCUS3" type="Node2D" parent="lvl2/FOCUS3"]
+position = Vector2(9, 353)
+script = ExtResource("8_pmh1t")
+zoom = 0.7
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="lvl2/FOCUS3/FOCUS3"]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="lvl2/FOCUS3/FOCUS3/Area2D"]
+position = Vector2(-42.5, 179.5)
+shape = SubResource("RectangleShape2D_kh8kp")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="DamageBloc" parent="lvl2" instance=ExtResource("11_700gq")]
+position = Vector2(-319, 222)
+rotation = 0.785397
+scale = Vector2(4.47188, 4.47188)
+destroy_on_success = false
+
+[node name="DamageBloc2" parent="lvl2" instance=ExtResource("11_700gq")]
+position = Vector2(307, 206)
+rotation = -0.785397
+scale = Vector2(4.61037, 4.61037)
+destroy_on_success = false
+
+[node name="PvWall" parent="lvl2" instance=ExtResource("7_fyds5")]
+position = Vector2(0, 273)
+scale = Vector2(3.3792, 3.3792)
+
+[node name="PvWall2" parent="lvl2" instance=ExtResource("7_fyds5")]
+position = Vector2(23, 873)
+scale = Vector2(6.0114, 6.0114)
+initial_pv = 6
+pv = 6
+
+[node name="StaminaBloc" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(-365, 815)
+destroy_on_hit = false
+
+[node name="StaminaBloc2" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(-239, 815)
+destroy_on_hit = false
+
+[node name="StaminaBloc3" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(276, 815)
+destroy_on_hit = false
+
+[node name="StaminaBloc4" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(373, 815)
+destroy_on_hit = false
+
+[node name="StaminaBloc5" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(342, 527)
+rotation = -1.57079
+
+[node name="StaminaBloc6" parent="lvl2" instance=ExtResource("13_lihxy")]
+position = Vector2(-337, 518)
+rotation = -1.57079
+
+[node name="StaminaBloc7" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(-218, 674)
+
+[node name="StaminaBloc8" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(0, 667)
+
+[node name="StaminaBloc9" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(250, 677)
+
+[node name="StaminaBloc10" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(-137, 520)
+
+[node name="StaminaBloc11" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(151, 513)
+
+[node name="StaminaBloc12" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(-137, 581)
+
+[node name="StaminaBloc13" parent="lvl2" instance=ExtResource("10_45152")]
+position = Vector2(151, 574)
+
+[node name="Stam(1)" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-32, 2196)
+scale = Vector2(0.385714, 0.385714)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)2" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(56.7381, 2181)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)3" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(24, 2188)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)4" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-77, 2228)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)5" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(-20.0001, 2289)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)6" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(76.9999, 2232)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="Stam(1)7" type="Sprite2D" parent="lvl2"]
+modulate = Color(1, 1, 1, 0.184314)
+position = Vector2(16.9999, 2291)
+rotation = 0.287058
+scale = Vector2(0.420632, 0.421022)
+texture = ExtResource("15_t5ltd")
+
+[node name="LLLV3" type="Node2D" parent="."]
+
+[node name="lvl3" type="Node2D" parent="LLLV3"]
+position = Vector2(-1, 1745)
+script = ExtResource("15_xiahn")
+speed = -0.5
+
+[node name="StaminaBloc" parent="LLLV3/lvl3" instance=ExtResource("16_jae4u")]
+position = Vector2(313, -24)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LLLV3/lvl3/StaminaBloc"]
+position = Vector2(0.333334, -17.3334)
+rotation = 1.6095
+scale = Vector2(0.333333, 0.333333)
+sprite_frames = SubResource("SpriteFrames_pmh1t")
+autoplay = "default"
+frame_progress = 0.695842
+
+[node name="DamageBloc" parent="LLLV3/lvl3" instance=ExtResource("6_t5ltd")]
+position = Vector2(315, 34)
+
+[node name="PvWall" parent="LLLV3" instance=ExtResource("7_fyds5")]
+position = Vector2(10, 2162)
+initial_pv = 3
+pv = 3
+
+[node name="FOCUS3" type="Node2D" parent="LLLV3"]
+position = Vector2(9, 1777)
+script = ExtResource("8_pmh1t")
+zoom = 0.7
+
+[node name="Area2D" type="Area2D" parent="LLLV3/FOCUS3"]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LLLV3/FOCUS3/Area2D"]
+position = Vector2(-1, -27)
+shape = SubResource("RectangleShape2D_x73wb")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="LLLV4" type="Node2D" parent="."]
+position = Vector2(0, 906)
+
+[node name="lvl3" type="Node2D" parent="LLLV4"]
+position = Vector2(-1, 1745)
+script = ExtResource("15_xiahn")
+speed = -0.5
+
+[node name="DamageBloc" parent="LLLV4/lvl3" instance=ExtResource("6_t5ltd")]
+position = Vector2(315, 34)
+
+[node name="StaminaBloc" parent="LLLV4/lvl3/DamageBloc" instance=ExtResource("16_jae4u")]
+position = Vector2(-0.666672, -19.3333)
+scale = Vector2(1, 1)
+destroy_on_hit = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LLLV4/lvl3/DamageBloc/StaminaBloc"]
+position = Vector2(0.333334, -17.3334)
+rotation = 1.6095
+scale = Vector2(0.333333, 0.333333)
+sprite_frames = SubResource("SpriteFrames_pmh1t")
+autoplay = "default"
+frame_progress = 0.695842
+
+[node name="DamageBloc2" parent="LLLV4/lvl3" instance=ExtResource("6_t5ltd")]
+position = Vector2(-284, -14)
+rotation = 3.14159
+
+[node name="StaminaBloc" parent="LLLV4/lvl3/DamageBloc2" instance=ExtResource("16_jae4u")]
+position = Vector2(-0.666672, -19.3333)
+scale = Vector2(1, 1)
+destroy_on_hit = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LLLV4/lvl3/DamageBloc2/StaminaBloc"]
+position = Vector2(0.333334, -17.3334)
+rotation = 1.6095
+scale = Vector2(0.333333, 0.333333)
+sprite_frames = SubResource("SpriteFrames_pmh1t")
+autoplay = "default"
+frame_progress = 0.695842
+
+[node name="StaminaBloc" parent="LLLV4/lvl3" instance=ExtResource("16_kh8kp")]
+position = Vector2(6, 35)
+stamina_per_hit = 10
+destroy_on_hit = false
+
+[node name="Stam(1)" parent="LLLV4/lvl3/StaminaBloc/Render" index="0"]
+modulate = Color(0.909804, 0.541176, 0.894118, 1)
+
+[node name="PvWall" parent="LLLV4" instance=ExtResource("7_fyds5")]
+position = Vector2(10, 2162)
+initial_pv = 8
+pv = 8
+
+[node name="FOCUS3" type="Node2D" parent="LLLV4"]
+position = Vector2(9, 1777)
+script = ExtResource("8_pmh1t")
+zoom = 0.7
+
+[node name="Area2D" type="Area2D" parent="LLLV4/FOCUS3"]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LLLV4/FOCUS3/Area2D"]
+position = Vector2(-1, -27)
+shape = SubResource("RectangleShape2D_x73wb")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="FOCUS4" type="Node2D" parent="LLLV4"]
+position = Vector2(12, 2568)
+script = ExtResource("8_pmh1t")
+zoom = 0.7
+
+[node name="Area2D" type="Area2D" parent="LLLV4/FOCUS4"]
+monitorable = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LLLV4/FOCUS4/Area2D"]
+position = Vector2(20.5, -35)
+shape = SubResource("RectangleShape2D_x73wb")
+debug_color = Color(1.58831e-06, 0.630007, 0.476898, 0.42)
+
+[node name="StaminaBloc" parent="." instance=ExtResource("10_45152")]
+position = Vector2(-335, 3309)
+
+[node name="StaminaBloc4" parent="." instance=ExtResource("10_45152")]
+position = Vector2(273, 3226)
+
+[node name="StaminaBloc5" parent="." instance=ExtResource("10_45152")]
+position = Vector2(-8, 3400)
+
+[node name="StaminaBloc6" parent="." instance=ExtResource("10_45152")]
+position = Vector2(-258, 3235)
+
+[node name="StaminaBloc7" parent="." instance=ExtResource("10_45152")]
+position = Vector2(322, 3463)
+
+[node name="StaminaBloc8" parent="." instance=ExtResource("10_45152")]
+position = Vector2(157, 3491)
+
+[node name="StaminaBloc9" parent="." instance=ExtResource("10_45152")]
+position = Vector2(-138, 3505)
+
+[node name="StaminaBloc2" parent="." instance=ExtResource("10_45152")]
+position = Vector2(-262, 3431)
+
+[node name="StaminaBloc3" parent="." instance=ExtResource("10_45152")]
+position = Vector2(247, 3335)
+
+[connection signal="wall_died" from="lvl2/PvWall" to="lvl2/PvWall2" method="reset"]
+[connection signal="doing_dammage" from="LLLV3/lvl3/DamageBloc" to="LLLV3/PvWall" method="on_dammaged"]
+[connection signal="doing_dammage" from="LLLV4/lvl3/DamageBloc" to="LLLV4/PvWall" method="on_dammaged"]
+[connection signal="doing_dammage" from="LLLV4/lvl3/DamageBloc2" to="LLLV4/PvWall" method="on_dammaged"]
+
+[editable path="lvl1/PvWall4"]
+[editable path="lvl1/PvWall3"]
+[editable path="LLLV4/lvl3/StaminaBloc"]

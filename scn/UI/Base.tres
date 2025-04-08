@@ -1,12 +1,19 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c0btyxvbmu35h"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c0btyxvbmu35h"]
 
-[ext_resource type="FontFile" uid="uid://bciahmwei0xax" path="res://scn/UI/Dimbo Regular.ttf" id="1_haqiu"]
+[ext_resource type="FontFile" uid="uid://p0sfj8ofaed3" path="res://scn/UI/Grandstander-clean.ttf" id="1_haqiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haqiu"]
+bg_color = Color(0.396078, 0.32549, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [resource]
 default_font = ExtResource("1_haqiu")
-default_font_size = 30
-Panel/styles/panel = null
-RichTextLabel/colors/default_color = Color(0.396078, 0.32549, 0.4, 1)
-RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 1)
+default_font_size = 60
+Panel/styles/panel = SubResource("StyleBoxFlat_haqiu")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.396078, 0.32549, 0.4, 1)
 RichTextLabel/constants/shadow_offset_x = 2
 RichTextLabel/constants/shadow_offset_y = 1

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://315bd5lo1vqq"]
+
+[ext_resource type="PackedScene" uid="uid://26suuekfbxhm" path="res://scn/lvl/wall/bloc.tscn" id="1_1oq4i"]
+[ext_resource type="Texture2D" uid="uid://ckj0mfeau1mdu" path="res://scn/lvl/wall/Illustration_sans_titre_21.png" id="2_5itlb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5itlb"]
+size = Vector2(39, 40)
+
+[node name="Node2D" instance=ExtResource("1_1oq4i")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5itlb")
+
+[node name="IllustrationSansTitre21" parent="." index="1"]
+texture = ExtResource("2_5itlb")

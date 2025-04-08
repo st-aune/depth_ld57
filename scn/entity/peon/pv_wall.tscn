@@ -1,13 +1,53 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnbht6833uvx7"]
+[gd_scene load_steps=22 format=3 uid="uid://bnbht6833uvx7"]
 
 [ext_resource type="Script" uid="uid://bl08le06i7odc" path="res://scn/entity/peon/pv_wall.gd" id="1_dmxnn"]
 [ext_resource type="Script" uid="uid://df3ocxt6pew5l" path="res://scn/entity/peon/ui_wall.gd" id="2_ai5qg"]
 [ext_resource type="Texture2D" uid="uid://bk67im7y5gjag" path="res://scn/entity/peon/Illustration_sans_titre_26.png" id="3_1xg52"]
+[ext_resource type="Theme" uid="uid://c0btyxvbmu35h" path="res://scn/UI/Base.tres" id="3_gm1yx"]
 [ext_resource type="Texture2D" uid="uid://c3uodeaaoh1i2" path="res://scn/entity/peon/oeil_bc (5).png" id="4_sobub"]
 [ext_resource type="Texture2D" uid="uid://8qhsil2s6rsr" path="res://scn/entity/peon/oeil_bc (3).png" id="5_gm1yx"]
 [ext_resource type="Texture2D" uid="uid://d0kws5d8kgjow" path="res://scn/entity/peon/oeil_bc (4).png" id="6_ikvl8"]
+[ext_resource type="Texture2D" uid="uid://dix4vg2v7wwhf" path="res://scn/fx/part.png" id="8_ikvl8"]
+[ext_resource type="AudioStream" uid="uid://dead0cxm6t0um" path="res://scn/entity/player/getit.wav" id="9_upy3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7lc2"]
+size = Vector2(58, 20)
+
+[sub_resource type="ImageTexture" id="ImageTexture_gm1yx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm1yx"]
+bg_color = Color(0.635833, 0.489754, 0.336451, 0.458824)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikvl8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.396078, 0.32549, 0.4, 1)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="ImageTexture" id="ImageTexture_ikvl8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikvl8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3o45"]
+bg_color = Color(0.937255, 0.584314, 0.32549, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_upy3e"]
 animations = [{
@@ -35,20 +75,48 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_ikvl8"]
+_data = [Vector2(0, 0.662921), 0.0, 2.17697, 0, 0, Vector2(1, 0), -1.47472, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_upy3e"]
+curve = SubResource("Curve_ikvl8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikvl8"]
+lifetime_randomness = 0.08
+particle_flag_disable_z = true
+angle_min = -91.9
+angle_max = 229.8
+spread = 180.0
+initial_velocity_min = 79.79
+initial_velocity_max = 260.64
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_upy3e")
+color = Color(0.615686, 0.843137, 0.807843, 1)
+hue_variation_min = -0.04
+hue_variation_max = 0.00999998
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v3o45"]
+random_pitch = 1.27
+streams_count = 1
+stream_0/stream = ExtResource("9_upy3e")
+
 [node name="PvWall" type="StaticBody2D"]
+scale = Vector2(3, 3)
 script = ExtResource("1_dmxnn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y7lc2")
 
 [node name="UI" type="Control" parent="."]
-z_index = 100
+z_index = 50
 layout_mode = 3
 anchors_preset = 0
 offset_left = -15.0
-offset_top = -10.0
+offset_top = 5.0
 offset_right = 25.0
-offset_bottom = 30.0
+offset_bottom = 45.0
 scale = Vector2(0.284258, 0.284258)
 script = ExtResource("2_ai5qg")
 
@@ -56,6 +124,9 @@ script = ExtResource("2_ai5qg")
 layout_mode = 0
 offset_right = 108.0
 offset_bottom = 16.0
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_gm1yx")
+theme_override_styles/slider = SubResource("StyleBoxFlat_gm1yx")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ikvl8")
 step = 0.1
 editable = false
 scrollable = false
@@ -64,6 +135,9 @@ scrollable = false
 layout_mode = 0
 offset_right = 108.0
 offset_bottom = 16.0
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_ikvl8")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_ikvl8")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_v3o45")
 step = 0.1
 editable = false
 scrollable = false
@@ -72,18 +146,21 @@ scrollable = false
 position = Vector2(56.287, -10.5538)
 
 [node name="Label" type="RichTextLabel" parent="UI/NodeLabel"]
-offset_left = -28.1435
-offset_top = -21.1076
-offset_right = 24.8565
-offset_bottom = 20.8924
-pivot_offset = Vector2(28.1435, 21.1076)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+offset_left = -91.4663
+offset_top = -31.6614
+offset_right = 87.5337
+offset_bottom = 45.3386
+scale = Vector2(0.32685, 0.32685)
+pivot_offset = Vector2(92.7222, 31.8707)
+theme = ExtResource("3_gm1yx")
+theme_override_colors/default_color = Color(0.939027, 0.585983, 0.325872, 1)
 text = "0/5"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Render" type="Node2D" parent="."]
+scale = Vector2(2.99505, -1.04502)
 
 [node name="blc" type="Sprite2D" parent="Render"]
 position = Vector2(4.76837e-07, 0.500001)
@@ -97,8 +174,24 @@ sprite_frames = SubResource("SpriteFrames_upy3e")
 autoplay = "default"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Render"]
-position = Vector2(6, 0)
+position = Vector2(6, -9.53674e-07)
 scale = Vector2(0.159677, 0.362602)
 sprite_frames = SubResource("SpriteFrames_upy3e")
 autoplay = "default"
-frame_progress = 0.784836
+
+[node name="effe" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("8_ikvl8")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ikvl8")
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_v3o45")
+volume_db = -1.0
+max_polyphony = 2
+
+[connection signal="wall_damaged" from="." to="effe" method="restart" unbinds=1]
+[connection signal="wall_died" from="." to="Hurt" method="play"]
